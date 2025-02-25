@@ -61,8 +61,8 @@ function NavBar() {
     return (
         <>
             {/* Navbar */}
-            <div className="pt-4 px-6 pb-5 flex items-center w-full justify-between relative z-50 dark:text-white navbar">
-                <h1 className="text-start text-xl font-medium cursor-pointer text-black dark:text-slate-300">
+            <div className="pt-4 px-6 pb-5 flex items-center w-full justify-between relative z-50 navbar">
+                <h1 className="text-start text-xl font-medium cursor-pointer text-black dark:text-white">
                     Tax<span className="text-blue-600 font-semibold">Pal</span>
                 </h1>
 
@@ -76,7 +76,7 @@ function NavBar() {
                     {/* Dark Mode Toggle Button */}
                     <div
                         onClick={toggleBtn}
-                        className="h-20 w-20 cursor-pointer p-2 ml-2 md:block sm:hidden relative z-50"
+                        className="h-20 w-20 cursor-pointer p-2 ml-2 md:block hidden relative z-50"
                         style={{ filter: isDarkMode ? "invert(1)" : "none" }} // Invert colors in dark mode
                     >
                         <div ref={toggleContainer}></div>

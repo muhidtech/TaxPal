@@ -33,7 +33,7 @@ function Hero() {
                 </button>
             </div>
 
-            <div className='pb-25 px-27 pt-50 h-full'>
+            <div className='lg:pb-25 lg:px-27 pb-10 px-10 pt-50 h-full '>
                 <p className='mx-auto max-w-3xl text-xl font-medium tracking-tight text-slate-700 sm:text-md text-balance text-center mb-10'>Trusted by these six companies so far</p>
                 <div className='grid grid-cols-3 gap-5 w-full md:grid-cols-6'>
                     <img className="" src={transistor} />

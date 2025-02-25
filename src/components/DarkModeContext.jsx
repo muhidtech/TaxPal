@@ -1,11 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const DarkModeContext = createContext();
 
 export function DarkModeProvider({ children }) {
     const [isDarkMode, setIsDarkMode] = useState(() => {
         if (typeof window !== "undefined") {
-            return localStorage.getItem("darkMode") === "true"; // ✅ Ensure value is retrieved in browser
+            return localStorage.getItem("dark") === "true"; // ✅ Ensure value is retrieved in browser
         }
         return false; // Default to false if localStorage is not available
     });
@@ -18,7 +18,7 @@ export function DarkModeProvider({ children }) {
         }
 
         if (typeof window !== "undefined") {
-            localStorage.setItem("darkMode", JSON.stringify(isDarkMode)); // ✅ Store value as a string
+            localStorage.setItem("dark", JSON.stringify(isDarkMode)); // ✅ Store value as a string
         }
     }, [isDarkMode]);
 

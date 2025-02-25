@@ -15,9 +15,9 @@ function SecondFeatures() {
   };
 
   return (
-    <div className='w-full h-full lg:p-20 flex flex-col text-center justify-center'>
+    <div className='w-full h-full lg:p-20 flex flex-col text-center justify-center max-sm:p-10'>
       <div className="mx-auto max-w-2xl md:text-center">
-        <h1 className='font-display text-3xl tracking-tight text-slate-900 sm:text-4xl'>
+        <h1 className='font-display text-3xl tracking-tight text-slate-900 sm:text-4xl max-sm:p-5'>
           Simplify everyday business tasks.
         </h1>
         <p className='mt-4 text-lg tracking-tight text-slate-700'>
@@ -25,7 +25,7 @@ function SecondFeatures() {
         </p>
       </div>
 
-      <div className='mx-30 flex flex-col justify-center items-center'>
+      <div className='md:mx-30  max-sm:mx-5 mx-10 flex flex-col justify-center items-center'>
         {/* Grid Section */}
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10'>
           {[

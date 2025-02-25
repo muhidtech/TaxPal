@@ -34,7 +34,7 @@ function Features() {
 
     return (
         <div id="features" 
-        className="overflow-x-hidden relative w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-blue-600 to-purple-700 text-white lg:p-40 sm:p-20">
+        className="overflow-x-hidden relative w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-blue-600 to-purple-700 text-white lg:p-40 p-10">
             <img
                 src={features_bg}
                 className="absolute inset-0 w-full h-full object-cover opacity-10"
@@ -66,30 +66,30 @@ function Features() {
                 </div>
 
                 {/* Left Side Mobile - Feature List */}
-                <div className="w-full flex flex-col items-center lg:hidden mx-20 backdrop-blur-5xl bg-white/10 pt-10">
+                <div className="w-full flex flex-col items-center lg:hidden mx-20 backdrop-blur-5xl bg-white/10 pt-10 max-sm:px-5 max-sm:pb-10">
                     {/* Feature List in a row */}
-                    <div className="flex space-x-4 overflow-x-auto">
+                    <div className="flex space-x-4 overflow-x-auto max-sm:space-x-0  ">
                         {Object.entries(data).map(([key, item]) => (
                             <div
                                 key={key}
-                                className={`p-2 cursor-pointer md:rounded-full sm:rounded-3xl text-center  mb-3 ${selectedFeature === key ?"bg-white/70" : "hover:backdrop-blur-5xl hover:bg-white/10"}`}
+                                className={`p-2 mmax-sm:p-1 max-sm:rounded-2xl cursor-pointer md:rounded-full sm:rounded-3xl text-center  mb-3 ${selectedFeature === key ?"bg-white/70" : "hover:backdrop-blur-5xl hover:bg-white/10"}`}
                                 onClick={() => setSelectedFeature(key)}
                             >
-                                <h2 className={`text-lg font-medium ${selectedFeature === key ?"text-blue-600" : ""}`}>{item.header}</h2>
+                                <h2 className={`text-lg max-sm:text-sm font-medium ${selectedFeature === key ?"text-blue-600" : ""}`}>{item.header}</h2>
                             </div>
                         ))}
                     </div>
 
                     {/* Selected Feature Text below the list */}
-                    <p className="text-white my-5 text-center max-w-xl text-lg">
+                    <p className="text-white my-5 text-center max-w-xl max-sm:max-w-sm max-sm:text-sm text-lg">
                         {data[selectedFeature].text}
                     </p>
 
                     {/* Feature Image below the row */}
-                    <div className="mt-6">
+                    <div className="mt-6 ">
                         <img 
                             src={data[selectedFeature].img} 
-                            className="lg:max-w-[900px] md:max-w-[800px] sm:max-w-[700px] max-w-[600px] shadow-2xl rounded-lg" 
+                            className="lg:max-w-[900px] md:max-w-[800px] sm:max-w-[700px] max-w-[600px] shadow-2xl rounded-lg max-sm:max-w-[370px]" 
                             alt={data[selectedFeature].header} 
                         />
                     </div>
