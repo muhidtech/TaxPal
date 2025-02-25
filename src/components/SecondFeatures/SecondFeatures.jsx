@@ -15,7 +15,7 @@ function SecondFeatures() {
   };
 
   return (
-    <div className='w-full h-full lg:p-20 flex flex-col text-center justify-center max-sm:p-10'>
+    <div className='w-full h-full lg:p-20 flex flex-col text-center justify-center max-sm:p-10 pb-15'>
       <div className="mx-auto max-w-2xl md:text-center">
         <h1 className='font-display text-3xl tracking-tight text-slate-900 sm:text-4xl max-sm:p-5'>
           Simplify everyday business tasks.
