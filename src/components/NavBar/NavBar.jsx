@@ -1,61 +1,33 @@
 import React, { useEffect, useRef, useState } from "react";
 import lottie from "lottie-web";
 import hamb_menu from "../../assets/Hamb-menu.json";
-import toggle from "../../assets/toggle.json";
-import { useDarkMode } from "../DarkModeContext";
 import "./NavBar.css";
 
 function NavBar() {
-    const container = useRef(null);
+    const menuAnimationRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
-    let anim = useRef(null);
-    const { isDarkMode, toggleDarkMode } = useDarkMode();
 
     useEffect(() => {
-        anim.current = lottie.loadAnimation({
-            container: container.current,
+        const anim = lottie.loadAnimation({
+            container: menuAnimationRef.current,
             renderer: "svg",
             loop: false,
             autoplay: false,
             animationData: hamb_menu,
         });
 
-        anim.current.goToAndStop(0, true); // Stop animation on first frame
+        anim.goToAndStop(0, true);
 
-        return () => anim.current.destroy();
+        return () => anim.destroy();
     }, []);
 
     const toggleMenu = () => {
-        anim.current.setDirection(isOpen ? -1 : 1);
-        anim.current.play();
-        setIsOpen(!isOpen);
-    };
-
-    // ✅ Toggle Button Animation
-    const toggleContainer = useRef(null);
-    const [isOn, setIsOn] = useState(false);
-    let animToggle = useRef(null);
-
-    useEffect(() => {
-        animToggle.current = lottie.loadAnimation({
-            container: toggleContainer.current,
-            renderer: "svg",
-            loop: false,
-            autoplay: false,
-            animationData: toggle,
-        });
-        animToggle.current.goToAndStop(0, true);
-
-        return () => animToggle.current.destroy();
-    }, []);
-
-    const toggleBtn = () => {
-        animToggle.current.setDirection(isOn ? -1 : 1);
-        animToggle.current.play();
-        setIsOn(!isOn);
-
-        // ✅ Toggle dark mode
-        toggleDarkMode();
+        if (menuAnimationRef.current) {
+            const direction = isOpen ? -1 : 1;
+            lottie.setDirection(direction);
+            lottie.play();
+            setIsOpen(!isOpen);
+        }
     };
 
     return (
@@ -73,25 +45,12 @@ function NavBar() {
                 </ul>
 
                 <div className="ml-auto flex items-center gap-5">
-                    {/* Dark Mode Toggle Button */}
-                    <div
-                        onClick={toggleBtn}
-                        className="h-20 w-20 cursor-pointer p-2 ml-2 md:block hidden relative z-50"
-                        style={{ filter: isDarkMode ? "invert(1)" : "none" }} // Invert colors in dark mode
-                    >
-                        <div ref={toggleContainer}></div>
-                    </div>
-
-                    <button className="hidden md:block text-gray-500 dark:text-gray-300 cursor-pointer list-hover hover:text-black dark:hover:text-white">
+                    <button className="hidden md:block text-gray-500 dark:text-gray-300 cursor-pointer list-hover hover:text-black dark:hover:text-white" aria-label="Sign in">
                         Sign in
                     </button>
 
-                    <button className="bg-blue-600 text-white dark:bg-blue-700 px-4 py-2 rounded-3xl md:hidden cursor-pointer hover:opacity-55">
+                    <button className="bg-blue-600 text-white dark:bg-blue-700 px-4 py-2 rounded-3xl cursor-pointer hover:opacity-55">
                         Get started
-                    </button>
-
-                    <button className="bg-blue-600 text-white dark:bg-blue-700 px-4 py-2 rounded-3xl hidden md:block cursor-pointer hover:opacity-55">
-                        Get started today
                     </button>
                 </div>
 
@@ -99,9 +58,9 @@ function NavBar() {
                 <div
                     onClick={toggleMenu}
                     className="h-12 w-12 cursor-pointer p-2 ml-2 md:hidden relative z-50"
-                    style={{ filter: isDarkMode ? "invert(1)" : "none" }} // Invert colors in dark mode
+                    aria-label="Toggle menu"
                 >
-                    <div ref={container}></div>
+                    <div ref={menuAnimationRef}></div>
                 </div>
             </div>
 
@@ -113,20 +72,11 @@ function NavBar() {
                         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the menu
                     >
                         <ul>
-                            <li className="list-menu"><a className="list-text" href="#">Features</a></li>
-                            <li className="list-menu"><a className="list-text" href="#">Pricing</a></li>
-                            <li className="list-menu"><a className="list-text" href="#">Testimonials</a></li>
+                            <li className="list-menu"><a className="list-text" href="#features">Features</a></li>
+                            <li className="list-menu"><a className="list-text" href="#pricing">Pricing</a></li>
+                            <li className="list-menu"><a className="list-text" href="#testimonials">Testimonials</a></li>
                             <li className="sign-in"><button>Sign in</button></li>
                         </ul>
-
-                        {/* ✅ Toggle Button (Dark Mode) */}
-                        <div
-                            onClick={toggleBtn}
-                            className="h-20 w-20 cursor-pointer p-2 ml-2 md:hidden absolute right-5 bottom-0 z-50"
-                            style={{ filter: isDarkMode ? "invert(1)" : "none" }} // Invert colors in dark mode
-                        >
-                            <div ref={toggleContainer}></div>
-                        </div>
                     </div>
                 </div>
             )}
